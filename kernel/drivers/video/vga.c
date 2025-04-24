@@ -1,4 +1,6 @@
 #include "vga.h"
+#include "../../lib/String.h"
+
 
 #define VGA_WIDTH 80
 #define VGA_HEIGHT 25
@@ -14,21 +16,22 @@ void comment(int num) {
     volatile uint16_t* vga_buffer = (uint16_t*)VGA_ADDRESS;
     
     // Texto a ser mostrado
-    const char* comment_str = "Bem vindo ao Alinux - ";
+    String msg;
+    string_init(&msg);
+    string_append(&msg, "Bem vindo ao Alinux - ");
+    char num_str[10];
+    itoa(num, num_str, 10);
+
+    string_append(&msg, num_str);
+
     int i = 0;
     
     // Exibe o comentário na primeira linha da tela
-    for (i = 0; comment_str[i] != '\0'; i++) {
-        vga_buffer[i] = vga_entry(comment_str[i], COLOR_WHITE | COLOR_BLACK << 4);
+    for (i = 0; msg.buffer[i] != '\0'; i++) {
+        vga_buffer[i] = vga_entry(msg.buffer[i], COLOR_WHITE | COLOR_BLACK << 4);
     }
 
-    // Exibe o número após o comentário (simulando um número)
-    char num_str[10];  // Máximo de 10 caracteres para o número
-    itoa(num, num_str, 10);  // converte número para string
-    int j = 0;
-    for (; num_str[j] != '\0'; j++) {
-        vga_buffer[i + j] = vga_entry(num_str[j], COLOR_WHITE | COLOR_BLACK << 4);
-    }
+
 }
 
 // Função para conversão de inteiro para string (itoa)

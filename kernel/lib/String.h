@@ -19,7 +19,8 @@ void string_append_char(String* str, char caracter);
 
 void string_append(String* str, const char* text);
 
+void clean_string(String* str);
 
-
+//void print(String* str);
 
 #endif

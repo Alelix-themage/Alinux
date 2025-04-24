@@ -18,6 +18,7 @@ enum vga_color {
     COLOR_WHITE = 15
 };
 
+uint16_t vga_entry(char c, uint8_t color);
 
 // Função de comentário que exibe uma linha na tela
 void comment(int num);

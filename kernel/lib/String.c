@@ -25,8 +25,16 @@ void string_append(String* str, const char* text) {
 }
 
 void clean_string(String* str){
-    
+    // Limpar variável de String
+    str->length = 0;
+    str->buffer[0] = '\0';
 }
+
+//String print(String* str){
+    //for(int i = 0; i < str->length; i++){
+    //    return str[i];
+  // }
+//}/
 
 
 //EXEMPLO DE USO
@@ -36,3 +44,4 @@ void clean_string(String* str){
 //      string_append(&msg, "Alinux ");
 //      string_append(&msg, "é brabo!");
 //      string_append_char(&msg, '\n');
+//      print(&msg); //printa a string

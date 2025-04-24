@@ -1,0 +1,18 @@
+Alinux/
+├── boot/
+│   └── grub/
+│       └── grub.cfg
+│   └── boot.s
+├── kernel/
+│   ├── drivers/
+│   │   └── video/
+│   │       └── vga.c
+│   └── lib/
+│       └── String.c
+│   └── main.c
+├── Licenses
+├── linker.ld
+└── Makefile
+
+
+Comando para rodar o qemu: qemu-system-x86_64 -cdrom iso/alinux.iso
