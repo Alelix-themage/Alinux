@@ -13,11 +13,11 @@ void kernel_main(void) {
     string_append_char(&msg, '2');
     string_append_char(&msg, '5');
 
-    // Printar na tela
-    volatile uint16_t* vga_buffer = (uint16_t*)0xB8000;
-    for (int i = 0; msg.buffer[i] != '\0'; i++) {
-        vga_buffer[i] = vga_entry(msg.buffer[i], COLOR_WHITE | COLOR_BLACK << 4);
-    }
+    print(&msg); 
+
+    // Mensagem para confirmar que o kernel iniciou
+    string_append(&msg, "Kernel iniciado com sucesso!");
+    print(&msg); 
 
     while (1) {
         __asm__ volatile("hlt");

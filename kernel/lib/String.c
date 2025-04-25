@@ -1,4 +1,5 @@
 #include "String.h"
+#include "../drivers/video/vga.h"
 
 
 void string_init(String* str) { //arg a ser passado é do tipo String
@@ -30,12 +31,15 @@ void clean_string(String* str){
     str->buffer[0] = '\0';
 }
 
-//String print(String* str){
-    //for(int i = 0; i < str->length; i++){
-    //    return str[i];
-  // }
-//}/
+uint8_t* video = (uint8_t*) 0xB8000;
 
+void print(String* str) {
+    for (int i = 0; i < str->length; i++) {
+        video[cursor * 2] = str->buffer[i];
+        video[cursor * 2 + 1] = WHITE_ON_BLACK;
+        cursor++;
+    }
+}
 
 //EXEMPLO DE USO
 
